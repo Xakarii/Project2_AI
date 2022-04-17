@@ -4,12 +4,21 @@
 
 Puzzle::Puzzle() {
 }
-
+//default constructor
 int Puzzle::getPuzzleState(int x) {
 	//std::cout << "State at " << x << " = " << this->square[x];
 	return square[x];
 }
-
+//copy constructor
+Puzzle::Puzzle(const Puzzle &p) {
+	
+	std::cout << "Constructor for loop:";
+	for (int i=0; i<9; i++) {
+		std::cout << "square[i]: " << square[i] <<"p.square[i]" << p.square[i] <<std::endl;
+		this->square[i] = p.square[i];
+	}
+}
+//set a square[x] in puzzle obj to value n
 void Puzzle::setPuzzleState(int x, int n) {
 	square[x] = n;
 }
@@ -31,14 +40,18 @@ int Puzzle::calcAdjacent(int square1, int square2) {
 	
 	return adj;
 }
-
+//return the empty square's index
 int Puzzle::findEmpty() {
+	int index = 0;
 	for (int i=0; i<8; i++) {
 		if (square[i] == 0)
-			return i;
+			index = i;
 	}
+	return index;
 }
 
+//swap a square at square[x] with the empty square at square[findEmpty()]
+//and set the swapped square[x] to empty [0]
 void Puzzle::swapPositions(int x) {
 	// if empty square is adjacent to attempted swap, swap them
 	std::cout<< "square[findEmpty()] : " << square[this->findEmpty()]<< std::endl;
@@ -60,4 +73,56 @@ void Puzzle::printPuzzle() {
 		std::cout << square[i] << " ";
 	}
 	std::cout << std::endl;
+}
+
+void Puzzle::findPossibleMoves() {
+	switch (this->findEmpty()) {
+		case 0 :
+			possibleMoves[0] = 1;
+			possibleMoves[1] = 3;
+			break;
+		case 1 :
+			possibleMoves[0] = 0;
+			possibleMoves[1] = 2;
+			possibleMoves[2] = 4;
+			break;
+		case 2 :
+			possibleMoves[0] = 1;
+			possibleMoves[1] = 5;
+			break;
+		case 3 :
+			possibleMoves[0] = 0;
+			possibleMoves[1] = 4;
+			possibleMoves[2] = 6;
+			break;
+		case 4 :
+			possibleMoves[0] = 1;
+			possibleMoves[1] = 3;
+			possibleMoves[2] = 5;
+			possibleMoves[3] = 7;
+			break;
+		case 5 :
+			possibleMoves[0] = 2;
+			possibleMoves[1] = 4;
+			possibleMoves[2] = 8;
+			break;
+		case 6 :
+			possibleMoves[0] = 3;
+			possibleMoves[1] = 7;
+			break;
+		case 7 :
+			possibleMoves[0] = 6;
+			possibleMoves[1] = 4;
+			possibleMoves[2] = 8;
+			break;
+		case 8 :
+			possibleMoves[0] = 7;
+			possibleMoves[1] = 5;
+			break;
+		}
+		for (int i = 0; i<4; i++) {
+			if (possibleMoves[i] != -1)
+				std::cout << possibleMoves[i] << " ";
+		}
+		std::cout << std::endl;
 }
