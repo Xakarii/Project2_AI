@@ -30,7 +30,7 @@ void Puzzle::setPuzzleState(int x, int n) {
 int Puzzle::calcAdjacent(int square1, int square2) {
 	int adj = 0;
 	//Squares are adjacent in the horizontal plane
-	if (abs(square1 - square2) == 1){
+	if (abs(square1 - square2) == 1 && square1 + square2 != 5 && square1 + square2 != 11){
 		adj = 1;
 	}
 	//Squares are adjacent in the vertical plane
