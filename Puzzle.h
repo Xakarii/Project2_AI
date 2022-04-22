@@ -7,6 +7,7 @@ class Puzzle
 		//int state = 1;
 		int square[9] = {1,2,3, 8,0,4, 7,6,5};
 		Puzzle();
+		Puzzle(int a, int b, int c, int d, int e, int f, int g, int h, int i);
 		Puzzle(const Puzzle &p);
 		//possible moves initialized to -1 to signify no possible moves
 		//if possible moves found by member function, set these to indexes

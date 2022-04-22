@@ -9,6 +9,19 @@ int Puzzle::getPuzzleState(int x) {
 	//std::cout << "State at " << x << " = " << this->square[x];
 	return square[x];
 }
+//custom configuration constructor
+Puzzle::Puzzle(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
+	square[0] = a;
+	square[1] = b;
+	square[2] = c;
+	square[3] = d;
+	square[4] = e;
+	square[5] = f;
+	square[6] = g;
+	square[7] = h;
+	square[8] = i;
+}
+
 //copy constructor
 Puzzle::Puzzle(const Puzzle &p) {
 	
@@ -43,7 +56,7 @@ int Puzzle::calcAdjacent(int square1, int square2) {
 //return the empty square's index
 int Puzzle::findEmpty() {
 	int index = 0;
-	for (int i=0; i<8; i++) {
+	for (int i=0; i<9; i++) {
 		if (square[i] == 0)
 			index = i;
 	}
@@ -102,20 +115,24 @@ void Puzzle::findPossibleMoves() {
 			possibleMoves[3] = 7;
 			break;
 		case 5 :
+			std::cout<<"case 5" << std::endl;
 			possibleMoves[0] = 2;
 			possibleMoves[1] = 4;
 			possibleMoves[2] = 8;
 			break;
 		case 6 :
+			std::cout<<"case 6" << std::endl;
 			possibleMoves[0] = 3;
 			possibleMoves[1] = 7;
 			break;
 		case 7 :
+			std::cout<<"case 7" << std::endl;
 			possibleMoves[0] = 6;
 			possibleMoves[1] = 4;
 			possibleMoves[2] = 8;
 			break;
 		case 8 :
+			std::cout<<"case 8" << std::endl;
 			possibleMoves[0] = 7;
 			possibleMoves[1] = 5;
 			break;
