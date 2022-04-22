@@ -36,6 +36,12 @@ void Puzzle::setPuzzleState(int x, int n) {
 	square[x] = n;
 }
 
+void Puzzle::setDepth(int d) {
+	depth = d;
+}
+int Puzzle::getDepth() {
+	return depth;
+}
 
 //assuming we only swap with the empty (0) position, then whatever square is adjacent to
 //it will return either 1 for horizontally adjacent, 3 for vertically adjacent or 0 for
@@ -137,9 +143,10 @@ void Puzzle::findPossibleMoves() {
 			possibleMoves[1] = 5;
 			break;
 		}
-		for (int i = 0; i<4; i++) {
-			if (possibleMoves[i] != -1)
-				std::cout << possibleMoves[i] << " ";
-		}
+		//for loop to test possibleMoves(), remove later
+		//for (int i = 0; i<4; i++) {
+		//	if (possibleMoves[i] != -1)
+		//		std::cout << possibleMoves[i] << " ";
+		//}
 		std::cout << std::endl;
 }
