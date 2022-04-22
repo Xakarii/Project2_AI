@@ -4,6 +4,10 @@
 #include <list>
 #include <vector>
 
+int heuristic1(Puzzle &p, Puzzle &g);
+int heuristic2(Puzzle &p, Puzzle &g);
+int heuristicS(Puzzle &p, Puzzle &g);
+
 int main(int argc, char** argv) {
 	
 	
@@ -19,8 +23,8 @@ int main(int argc, char** argv) {
 	std::cout << "State at 2: "<<  p.getPuzzleState(2) << std::endl;
 	std::cout << "p.square[4]" << p.square[4] << std::endl;
 	std::cout << "Empty square is at : " << p.findEmpty() << std::endl;
-	std::cout << "Swapping: 1 and empty 0: " << std::endl;
-	p.swapPositions(1);
+	//std::cout << "Swapping: 1 and empty 0: " << std::endl;
+	//p.swapPositions(1);
 	std::cout << "Empty square is at : " << p.findEmpty() << std::endl;
 	p.printPuzzle();
 	std::cout << "p.square[1]" << p.square[1] << std::endl;
@@ -57,7 +61,26 @@ int main(int argc, char** argv) {
 	std::cout << std::endl;
 	std::cout << "initial state One getDepth() " << initialOne.getDepth() << std::endl;
 	
+	std::cout << "heuristic 1 h value: " << heuristic1(p, g) << std::endl;
 	
 	return 0;
 }
 
+int heuristic1(Puzzle &p, Puzzle &g) {
+	int hValue;
+	for (int i = 0; i < 9; i++) {
+		std::cout<< "p.square[i] " << p.square[i] << " g.square[i] " << g.square[i] <<  " hValue "<< hValue << std::endl;
+		if (p.square[i] != g.square[i] && p.square[i] != 0) {
+			hValue++;
+		}
+	}
+	return hValue;
+}
+
+int heuristic2(Puzzle &p, Puzzle &g) {
+	std::cout << "Placeholder for H2" << std::endl;
+}
+
+int heuristicS(Puzzle &p, Puzzle &g) {
+	std::cout << "Placeholder for S" << std::endl;
+}

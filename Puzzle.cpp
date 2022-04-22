@@ -43,6 +43,13 @@ void Puzzle::setDepth(int d) {
 int Puzzle::getDepth() {
 	return depth;
 }
+void Puzzle::setHValue(int h) {
+	hValue = h;
+}
+
+void Puzzle::setFValue(int f) {
+	fValue = f;
+}
 
 //assuming we only swap with the empty (0) position, then whatever square is adjacent to
 //it will return either 1 for horizontally adjacent, 3 for vertically adjacent or 0 for
