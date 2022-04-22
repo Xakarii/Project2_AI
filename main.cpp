@@ -54,7 +54,8 @@ int main(int argc, char** argv) {
 	}
 	
 	initialOne.setDepth(0);
-	std::cout << "initial state One getDepth" << initialOne.getDepth();
+	std::cout << std::endl;
+	std::cout << "initial state One getDepth() " << initialOne.getDepth() << std::endl;
 	
 	
 	return 0;
