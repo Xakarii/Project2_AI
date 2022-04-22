@@ -30,6 +30,7 @@ Puzzle::Puzzle(const Puzzle &p) {
 		std::cout << "square[i]: " << square[i] <<"p.square[i]" << p.square[i] <<std::endl;
 		this->square[i] = p.square[i];
 	}
+	this->depth = p.depth;
 }
 //set a square[x] in puzzle obj to value n
 void Puzzle::setPuzzleState(int x, int n) {
