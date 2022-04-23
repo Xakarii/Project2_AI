@@ -7,7 +7,8 @@
 int heuristic1(Node &p, Node &g);
 int heuristic2(Node &p, Node &g);
 int heuristicS(Node &p, Node &g);
-void aStarSearch(std::vector<Node> &puzzle, std::vector<Node> &goal, std::vector<Node> &bestPath);
+void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &closed, 
+				std::vector<Node> &bestPath, int heuristic);
 
 int main(int argc, char** argv) {
 	
@@ -96,11 +97,14 @@ int heuristicS(Node &p, Node &g) {
 	std::cout << "Placeholder for S" << std::endl;
 }
 
-void aStarSearch(std::vector<Node> &puzzle, std::vector<Node> &goal, std::vector<Node> &bestPath) {
+
+//passing vector for initial node
+void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &closed, 
+	std::vector<Node> &bestPath, int heuristic) {
 	std::cout << "placeholder for A* search algo" << std::endl; 
 	//find h and f value of p and expand possible moves, swap each possible 
 	//with empty (0) square and create a new node for each
-	puzzle[0].findPossibleMoves();
+	initial.findPossibleMoves();
 	
 	
 }
