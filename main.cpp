@@ -65,7 +65,28 @@ int main(int argc, char** argv) {
 	
 	return 0;
 }
+//std:: vector<int> heuristicHelper(Puzzle &p, Puzzle &g, int function) {
 
+//finds possible moves
+
+//makes as many childeren nodes as the size of the array
+
+//makes the children and a vector each for them (0,0) the first number being the square moved and the second being the f(n)
+
+//compares the children to the goal by using any of the hueristic functions 1,2,3,4,5 or 6
+
+//if children are the same 
+// 	if 2 are the same run the heuristic2Helper on both and the vector w the lowest h(n) wins (the second part of the vector)
+//  if all 3 or 4 kids are the same do the same thing
+//
+//
+
+//picks the best one
+//makes vector with (number to be moved, the h(n) of the function)
+
+//return vector<int>
+
+//}
 int heuristic1(Puzzle &p, Puzzle &g) {
 	int hValue;
 	for (int i = 0; i < 9; i++) {
