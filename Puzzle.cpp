@@ -1,7 +1,7 @@
 #include "Puzzle.h"
 #include <iostream>
 #include <cmath>
-
+//switched to Node class, not in use
 Puzzle::Puzzle() {
 }
 //default constructor

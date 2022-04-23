@@ -1,6 +1,6 @@
 #ifndef PUZZLE_H
 #define PUZZLE_H
-
+//switched to node class, not in use by main
 class Puzzle
 {
 	public:
