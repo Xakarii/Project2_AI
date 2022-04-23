@@ -79,6 +79,16 @@ int heuristic1(Puzzle &p, Puzzle &g) {
 
 int heuristic2(Puzzle &p, Puzzle &g) {
 	std::cout << "Placeholder for H2" << std::endl;
+	//int tp 
+	//loop until p = g
+	//find possible moves
+	//pick the best one (may have to check grandkids)
+	//p =  "best one"
+	//calculate h(n)
+	//depth ++
+	// tp = tp + h(n) +1(for the extra debth)
+	//end loop
+	//print table
 }
 
 int heuristicS(Puzzle &p, Puzzle &g) {
