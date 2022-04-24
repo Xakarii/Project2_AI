@@ -159,4 +159,5 @@ int Node::findPossibleMoves() {
 				possibleMovesCount++;
 		}
 		std::cout << std::endl;
+	return possibleMovesCount;
 }
