@@ -79,7 +79,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		case 0: //square 1 check
 			if (initial.square[j]==2 || initial.square[j]==8 )
 				hValue = hValue+1;
-			if (initial.square[j]==3 || initial.square[j]==7 || initial.square[j]==0 )
+			if (initial.square[j]==3 || initial.square[j]==7  )
 				hValue = hValue+2;
 			if (initial.square[j]==4 || initial.square[j]==6)
 				hValue = hValue+3;
@@ -89,7 +89,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		break;
 
 		case 1: //square 2 check
-			if (initial.square[j]==1 || initial.square[j]==3 || initial.square[j]==0 )
+			if (initial.square[j]==1 || initial.square[j]==3 )
 				hValue = hValue+1;
 			if (initial.square[j]==6 || initial.square[j]==8 || initial.square[j]==4 )
 				hValue = hValue+2;
@@ -101,7 +101,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		case 2: //square 3 check
 			if (initial.square[j]==2 || initial.square[j]==4)
 				hValue = hValue+1;
-			if (initial.square[j]==1 || initial.square[j]==0 || initial.square[j]==5 )
+			if (initial.square[j]==1  || initial.square[j]==5 )
 				hValue = hValue+2;
 			if (initial.square[j]==8 || initial.square[j]==6)
 				hValue = hValue+3;
@@ -111,7 +111,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		break;
 
 		case 5: //square 4 check
-			if (initial.square[j]==3 || initial.square[j]==5 || initial.square[j]==0)
+			if (initial.square[j]==3 || initial.square[j]==5 )
 				hValue = hValue+1;
 			if (initial.square[j]==8 || initial.square[j]==2 || initial.square[j]==6 )
 				hValue = hValue+2;
@@ -123,7 +123,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		case 8: //square 5 check
 			if (initial.square[j]==6 || initial.square[j]==4)
 				hValue = hValue+1;
-			if (initial.square[j]==7 || initial.square[j]==3 || initial.square[j]==0 )
+			if (initial.square[j]==7 || initial.square[j]==3  )
 				hValue = hValue+2;
 			if (initial.square[j]==8 || initial.square[j]==2)
 				hValue = hValue+3;
@@ -132,7 +132,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		break;
 
 		case 7: //square 6 check
-			if (initial.square[j]==5 || initial.square[j]==7 || initial.square[j]==0 )
+			if (initial.square[j]==5 || initial.square[j]==7 )
 				hValue = hValue+1;
 			if (initial.square[j]==2 || initial.square[j]==8 || initial.square[j]==4 )
 				hValue = hValue+2;
@@ -144,7 +144,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		case 6: //square 7 check
 			if (initial.square[j]==8 || initial.square[j]==6)
 				hValue = hValue+1;
-			if (initial.square[j]==1 || initial.square[j]==5 || initial.square[j]==0 )
+			if (initial.square[j]==1 || initial.square[j]==5 )
 				hValue = hValue+2;
 			if (initial.square[j]==2 || initial.square[j]==4)
 				hValue = hValue+3;
@@ -154,7 +154,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		break;
 
 		case 3: //square 8 check
-			if (initial.square[j]==1 || initial.square[j]==7 || initial.square[j]==0)
+			if (initial.square[j]==1 || initial.square[j]==7 )
 				hValue = hValue+1;
 			if (initial.square[j]==4 || initial.square[j]==2 || initial.square[j]==6 )
 				hValue = hValue+2;
@@ -163,7 +163,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 
 		break;
 
-		case 4: //square 9 check
+		case 4: //square 9 check 
 			if (initial.square[j]==2 || initial.square[j]==4 || initial.square[j]==8 || initial.square[j]==6)
 				hValue = hValue+1;
 			if (initial.square[j]==1 || initial.square[j]==3 || initial.square[j]==5 || initial.square[j]==7 )
@@ -174,17 +174,16 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 	return hValue;
 }
 
-
 int heuristic2(Node &initial,  Node &goal) { //counts the tiles out of place in each state when it is compared with the goal.
 
 	int hValue=0;
 	for (int j =0; j<8 ; j++){
 		if(initial.square[j]!=goal.square[j])
-			hValue++;
+	       if(initial.square[j]!=0)
+				hValue++;
 		}	
 	return hValue;
 }
-
 
 int heuristic3(Node &initial,  Node &goal) { // by checking around the non-central 
 //squares in turn, allotting 2 for every tile not followed by its proper 
@@ -265,7 +264,10 @@ int heuristic3(Node &initial,  Node &goal) { // by checking around the non-centr
 			 if( (initial.square[j] - initial.square[6]) != 1)
 			hValue=hValue+2;			
 		break;
-
+		case 4:
+		if (initial.square[j]!=0 )
+		 	hValue=hValue+1;		
+		break;
 			}
 		}	
 	return hValue;
@@ -293,6 +295,107 @@ int heuristic4(Node &initial,  Node &goal) { //corners out of place = +2, blank 
 		hValue=hValue+1;
 
 
+	return hValue;
+}
+
+int heuristic5(Node &initial,  Node &goal) { //right place +0 right row +1 right collum +1 wrong row +2 wrong collum +2
+
+	int hValue=0;
+	
+for (int j =0; j<8 ; j++){
+	if (initial.square[j]!=0)
+		switch(j){
+			
+		case 0:
+		if (initial.square[1]==1 || initial.square[2]==1)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[1]==3 || initial.square[6]==1)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		break;
+
+		case 1: //square 2 check
+		if (initial.square[0]==2 || initial.square[2]==2)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[4]==2 || initial.square[7]==2)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		break;
+
+		case 2:
+		if (initial.square[1]==3 || initial.square[0]==3)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[5]==3 || initial.square[8]==3)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		break;
+
+		case 5:
+		if (initial.square[3]==4 || initial.square[4]==4)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[2]==4|| initial.square[8]==4)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		break;
+
+		case 8:
+		if (initial.square[6]==5 || initial.square[7]==5)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[2]==5 || initial.square[5]==5)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		break;
+
+		case 7:
+		if (initial.square[8]==6 || initial.square[6]==6)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[1]==6 || initial.square[4]==6)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		break;
+
+		case 6:
+			if (initial.square[0]==7 || initial.square[3]==7)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[7]==7 || initial.square[8]==7)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		break;
+
+		case 3:
+		if (initial.square[0]==8 || initial.square[6]==8)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;
+		if (initial.square[4]==8 || initial.square[4]==8)
+			hValue=hValue+1;
+		else 
+			hValue=hValue+2;		
+		break;
+
+			}
+		}	
 	return hValue;
 }
 
