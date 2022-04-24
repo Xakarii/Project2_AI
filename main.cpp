@@ -76,7 +76,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 	for (int j =0; j<8 ; j++){
 		switch(j){
 			
-		case 0:
+		case 0: //square 1 check
 			if (initial.square[j]==2 || initial.square[j]==8 )
 				hValue = hValue+1;
 			if (initial.square[j]==3 || initial.square[j]==7 || initial.square[j]==0 )
@@ -98,7 +98,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 
 		break;
 
-		case 2:
+		case 2: //square 3 check
 			if (initial.square[j]==2 || initial.square[j]==4)
 				hValue = hValue+1;
 			if (initial.square[j]==1 || initial.square[j]==0 || initial.square[j]==5 )
@@ -110,7 +110,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 
 		break;
 
-		case 3:
+		case 5: //square 4 check
 			if (initial.square[j]==3 || initial.square[j]==5 || initial.square[j]==0)
 				hValue = hValue+1;
 			if (initial.square[j]==8 || initial.square[j]==2 || initial.square[j]==6 )
@@ -120,7 +120,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		
 		break;
 
-		case 4:
+		case 8: //square 5 check
 			if (initial.square[j]==6 || initial.square[j]==4)
 				hValue = hValue+1;
 			if (initial.square[j]==7 || initial.square[j]==3 || initial.square[j]==0 )
@@ -131,7 +131,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 				hValue = hValue+4;
 		break;
 
-		case 5:
+		case 7: //square 6 check
 			if (initial.square[j]==5 || initial.square[j]==7 || initial.square[j]==0 )
 				hValue = hValue+1;
 			if (initial.square[j]==2 || initial.square[j]==8 || initial.square[j]==4 )
@@ -141,7 +141,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 
 		break;
 
-		case 6:
+		case 6: //square 7 check
 			if (initial.square[j]==8 || initial.square[j]==6)
 				hValue = hValue+1;
 			if (initial.square[j]==1 || initial.square[j]==5 || initial.square[j]==0 )
@@ -153,7 +153,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 
 		break;
 
-		case 7:
+		case 3: //square 8 check
 			if (initial.square[j]==1 || initial.square[j]==7 || initial.square[j]==0)
 				hValue = hValue+1;
 			if (initial.square[j]==4 || initial.square[j]==2 || initial.square[j]==6 )
@@ -163,7 +163,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 
 		break;
 
-		case 8:
+		case 4: //square 9 check
 			if (initial.square[j]==2 || initial.square[j]==4 || initial.square[j]==8 || initial.square[j]==6)
 				hValue = hValue+1;
 			if (initial.square[j]==1 || initial.square[j]==3 || initial.square[j]==5 || initial.square[j]==7 )
@@ -173,6 +173,7 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 		}	
 	return hValue;
 }
+
 
 int heuristic2(Node &initial,  Node &goal) { //counts the tiles out of place in each state when it is compared with the goal.
 
