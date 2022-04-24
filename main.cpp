@@ -186,8 +186,89 @@ int heuristic2(Node &initial,  Node &goal) { //counts the tiles out of place in 
 }
 
 
-int heuristicS(Node &p, Node &g) {
-	std::cout << "Placeholder for S" << std::endl;
+int heuristic3(Node &initial,  Node &goal) { // by checking around the non-central 
+//squares in turn, allotting 2 for every tile not followed by its proper 
+//successor and allotting 0 for every other tile; a piece in the center 
+//scores one.
+	int hValue=0;
+	for (int j =0; j<8 ; j++){
+		switch(j){
+			
+		case 0:
+		 if (initial.square[0]==1 && initial.square[4]!=8)
+		 	hValue=hValue+2;
+		 if (initial.square[0]==2 || initial.square[0]==3 || initial.square[0]==4 || initial.square[0]==5 || initial.square[0]==6
+		 	|| initial.square[0]==7|| initial.square[0]==8)
+			 if( (initial.square[0] - initial.square[4]) != 1)
+			hValue=hValue+2;
+		break;
+
+		case 1: //square 2 check
+		if (initial.square[1]==1 && initial.square[0]!=8)
+		 	hValue=hValue+2;
+		if (initial.square[1]==2 || initial.square[1]==3 || initial.square[1]==4 || initial.square[1]==5 || initial.square[1]==6
+		 	|| initial.square[1]==7|| initial.square[1]==8)
+			 if( (initial.square[1] - initial.square[0]) != 1)
+			hValue=hValue+2;
+		break;
+
+		case 2:
+		if (initial.square[j]==1 && initial.square[1]!=8)
+		 	hValue=hValue+2;
+		if (initial.square[j]==2 || initial.square[j]==3 || initial.square[j]==4 || initial.square[j]==5 || initial.square[j]==6
+		 	|| initial.square[j]==7|| initial.square[j]==8)
+			 if( (initial.square[j] - initial.square[1]) != 1)
+			hValue=hValue+2;
+		break;
+
+		case 5:
+		if (initial.square[j]==1 && initial.square[2]!=8)
+		 	hValue=hValue+2;
+		if (initial.square[j]==2 || initial.square[j]==3 || initial.square[j]==4 || initial.square[j]==5 || initial.square[j]==6
+		 	|| initial.square[j]==7|| initial.square[j]==8)
+			 if( (initial.square[j] - initial.square[2]) != 1)
+			hValue=hValue+2;	
+		break;
+
+		case 8:
+		if (initial.square[j]==1 && initial.square[5]!=8)
+		 	hValue=hValue+2;
+		if (initial.square[j]==2 || initial.square[j]==3 || initial.square[j]==4 || initial.square[j]==5 || initial.square[j]==6
+		 	|| initial.square[j]==7|| initial.square[j]==8)
+			 if( (initial.square[j] - initial.square[5]) != 1)
+			hValue=hValue+2;	
+		break;
+
+		case 7:
+		if (initial.square[j]==1 && initial.square[8]!=8)
+		 	hValue=hValue+2;
+		if (initial.square[j]==2 || initial.square[j]==3 || initial.square[j]==4 || initial.square[j]==5 || initial.square[j]==6
+		 	|| initial.square[j]==7|| initial.square[j]==8)
+			 if( (initial.square[j] - initial.square[8]) != 1)
+			hValue=hValue+2;	
+		break;
+
+		case 6:
+		if (initial.square[j]==1 && initial.square[7]!=8)
+		 	hValue=hValue+2;
+		if (initial.square[j]==2 || initial.square[j]==3 || initial.square[j]==4 || initial.square[j]==5 || initial.square[j]==6
+		 	|| initial.square[j]==7|| initial.square[j]==8)
+			 if( (initial.square[j] - initial.square[7]) != 1)
+			hValue=hValue+2;	
+		break;
+
+		case 3:
+		if (initial.square[j]==1 && initial.square[6]!=8)
+		 	hValue=hValue+2;
+		if (initial.square[j]==2 || initial.square[j]==3 || initial.square[j]==4 || initial.square[j]==5 || initial.square[j]==6
+		 	|| initial.square[j]==7|| initial.square[j]==8)
+			 if( (initial.square[j] - initial.square[6]) != 1)
+			hValue=hValue+2;			
+		break;
+
+			}
+		}	
+	return hValue;
 }
 
 
