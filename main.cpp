@@ -68,30 +68,122 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-int heuristic1(Node &p, Node &g) {
-	int hValue;
-	for (int i = 0; i < 9; i++) {
-		std::cout<< "p.square[i] " << p.square[i] << " g.square[i] " << g.square[i] <<  " hValue "<< hValue << std::endl;
-		if (p.square[i] != g.square[i] && p.square[i] != 0) {
-			hValue++;
-		}
-	}
+
+int heuristic1(Node &initial,  Node &goal) { //sums all the distances by 
+                                             //which the tiles are out of place, one for each square a tile must be 
+ 											 // moved to reach its position in the goal state.
+	int hValue=0;
+	for (int j =0; j<8 ; j++){
+		switch(j){
+			
+		case 0:
+			if (initial.square[j]==2 || initial.square[j]==8 )
+				hValue = hValue+1;
+			if (initial.square[j]==3 || initial.square[j]==7 || initial.square[j]==0 )
+				hValue = hValue+2;
+			if (initial.square[j]==4 || initial.square[j]==6)
+				hValue = hValue+3;
+			if (initial.square[j]==5)
+				hValue = hValue+4;
+				
+		break;
+
+		case 1: //square 2 check
+			if (initial.square[j]==1 || initial.square[j]==3 || initial.square[j]==0 )
+				hValue = hValue+1;
+			if (initial.square[j]==6 || initial.square[j]==8 || initial.square[j]==4 )
+				hValue = hValue+2;
+			if (initial.square[j]==5 || initial.square[j]==7)
+				hValue = hValue+3;
+
+		break;
+
+		case 2:
+			if (initial.square[j]==2 || initial.square[j]==4)
+				hValue = hValue+1;
+			if (initial.square[j]==1 || initial.square[j]==0 || initial.square[j]==5 )
+				hValue = hValue+2;
+			if (initial.square[j]==8 || initial.square[j]==6)
+				hValue = hValue+3;
+			if (initial.square[j]==7)
+				hValue = hValue+4;
+
+		break;
+
+		case 3:
+			if (initial.square[j]==3 || initial.square[j]==5 || initial.square[j]==0)
+				hValue = hValue+1;
+			if (initial.square[j]==8 || initial.square[j]==2 || initial.square[j]==6 )
+				hValue = hValue+2;
+			if (initial.square[j]==1 || initial.square[j]==7)
+				hValue = hValue+3;
+		
+		break;
+
+		case 4:
+			if (initial.square[j]==6 || initial.square[j]==4)
+				hValue = hValue+1;
+			if (initial.square[j]==7 || initial.square[j]==3 || initial.square[j]==0 )
+				hValue = hValue+2;
+			if (initial.square[j]==8 || initial.square[j]==2)
+				hValue = hValue+3;
+			if (initial.square[j]==1)
+				hValue = hValue+4;
+		break;
+
+		case 5:
+			if (initial.square[j]==5 || initial.square[j]==7 || initial.square[j]==0 )
+				hValue = hValue+1;
+			if (initial.square[j]==2 || initial.square[j]==8 || initial.square[j]==4 )
+				hValue = hValue+2;
+			if (initial.square[j]==1 || initial.square[j]==3)
+				hValue = hValue+3;
+
+		break;
+
+		case 6:
+			if (initial.square[j]==8 || initial.square[j]==6)
+				hValue = hValue+1;
+			if (initial.square[j]==1 || initial.square[j]==5 || initial.square[j]==0 )
+				hValue = hValue+2;
+			if (initial.square[j]==2 || initial.square[j]==4)
+				hValue = hValue+3;
+			if (initial.square[j]==3)
+				hValue = hValue+4;
+
+		break;
+
+		case 7:
+			if (initial.square[j]==1 || initial.square[j]==7 || initial.square[j]==0)
+				hValue = hValue+1;
+			if (initial.square[j]==4 || initial.square[j]==2 || initial.square[j]==6 )
+				hValue = hValue+2;
+			if (initial.square[j]==3 || initial.square[j]==5)
+				hValue = hValue+3;
+
+		break;
+
+		case 8:
+			if (initial.square[j]==2 || initial.square[j]==4 || initial.square[j]==8 || initial.square[j]==6)
+				hValue = hValue+1;
+			if (initial.square[j]==1 || initial.square[j]==3 || initial.square[j]==5 || initial.square[j]==7 )
+				hValue = hValue+2;
+		break;
+			}
+		}	
 	return hValue;
 }
 
-int heuristic2(Node &p, Node &g) {
-	std::cout << "Placeholder for H2" << std::endl;
-	//int tp 
-	//loop until p = g
-	//find possible moves
-	//pick the best one (may have to check grandkids)
-	//p =  "best one"
-	//calculate h(n)
-	//depth ++
-	// tp = tp + h(n) +1(for the extra debth)
-	//end loop
-	//print table
+int heuristic2(Node &initial,  Node &goal) { //counts the tiles out of place in each state when it is compared with the goal.
+
+	int hValue=0;
+	for (int j =0; j<8 ; j++){
+		if(initial.square[j]!=goal.square[j])
+			hValue++;
+		}	
+	return hValue;
 }
+
 
 int heuristicS(Node &p, Node &g) {
 	std::cout << "Placeholder for S" << std::endl;
