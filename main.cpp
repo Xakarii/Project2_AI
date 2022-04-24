@@ -6,7 +6,10 @@
 
 int heuristic1(Node &p, Node &g);
 int heuristic2(Node &p, Node &g);
-int heuristicS(Node &p, Node &g);
+int heuristic3(Node &p, Node &g);
+int heuristic4(Node &p, Node &g);
+int heuristic5(Node &p, Node &g);
+int heuristic6(Node &p, Node &g);
 void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &closed, 
 				std::vector<Node> &bestPath, int heuristic);
 
@@ -68,8 +71,19 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
+int heuristic1(Node &initial,  Node &goal) { //counts the tiles out of place in each state when it is compared with the goal.
 
-int heuristic1(Node &initial,  Node &goal) { //sums all the distances by 
+	int hValue=0;
+	for (int j =0; j<8 ; j++){
+		if(initial.square[j]!=goal.square[j])
+	       if(initial.square[j]!=0)
+				hValue++;
+		}	
+	return hValue;
+}
+
+
+int heuristic2(Node &initial,  Node &goal) { //sums all the distances by 
                                              //which the tiles are out of place, one for each square a tile must be 
  											 // moved to reach its position in the goal state.
 	int hValue=0;
@@ -174,16 +188,6 @@ int heuristic1(Node &initial,  Node &goal) { //sums all the distances by
 	return hValue;
 }
 
-int heuristic2(Node &initial,  Node &goal) { //counts the tiles out of place in each state when it is compared with the goal.
-
-	int hValue=0;
-	for (int j =0; j<8 ; j++){
-		if(initial.square[j]!=goal.square[j])
-	       if(initial.square[j]!=0)
-				hValue++;
-		}	
-	return hValue;
-}
 
 int heuristic3(Node &initial,  Node &goal) { // by checking around the non-central 
 //squares in turn, allotting 2 for every tile not followed by its proper 
@@ -397,6 +401,35 @@ for (int j =0; j<8 ; j++){
 			}
 		}	
 	return hValue;
+}
+
+/*n-MaxSwap
+assumes you can swap any tile with the "space". 
+Use the number of steps it takes to solve as h value
+Will be ineffective as it the algo used doesnt accommodate
+these assumptions
+*/
+int hueristic6 (Node &initial, Node &goal){ 
+
+	int hValue = 0;
+	if (initial.square[0]!=1)
+		hValue=hValue+1;
+	if (initial.square[1]!=2)
+		hValue=hValue+1;
+	if (initial.square[2]!=3)
+		hValue=hValue+1;
+	if (initial.square[3]!=8)
+		hValue=hValue+1;
+	if (initial.square[4]!=0)
+		hValue=hValue+1;
+	if (initial.square[5]!=4)
+		hValue=hValue+1;
+	if (initial.square[6]!=7)
+		hValue=hValue+1;
+	if (initial.square[7]!=6)
+		hValue=hValue+1;
+	if (initial.square[8]!=5)
+		hValue=hValue+1;
 }
 
 //passing vector for initial node
