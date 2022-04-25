@@ -14,7 +14,7 @@ class Node
 		Node();
 		Node(int a, int b, int c, int d, int e, int f, int g, int h, int i);
 		Node(const Node &p);
-		vector<Node> successors;
+		std::vector<Node> successors;
 		//possible moves initialized to -1 to signify no possible moves
 		//if possible moves found by member function, set these to indexes
 		//that can swap with empty square
