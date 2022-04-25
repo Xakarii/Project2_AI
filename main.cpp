@@ -474,7 +474,7 @@ Use the number of steps it takes to solve as h value
 Will be ineffective as it the algo used doesnt accommodate
 these assumptions
 */
-int hueristic6 (Node &initial, Node &goal){ 
+int heuristic6(Node &initial,  Node &goal)){ 
 
 	int hValue = 0;
 	if (initial.square[0]!=1)
