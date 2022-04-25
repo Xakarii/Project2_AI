@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
 	std::cout << "initial state One getDepth() " << initialOne.getDepth() << std::endl;
 	
 	std::cout << "heuristic 1 h value: " << heuristic1(p, g) << std::endl;
-	
+	aStarSearch(initialOne, open, closed, bestPath, 1);
 	return 0;
 }
 
@@ -443,9 +443,7 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	open.push_back(initial);
 	//set that node's g value to 0
 	//initial.setGvalue(0);
-	
-	
-	
+	std::cout<< "Initial.hValue: " << initial.hValue << std::endl;
 	Node goal = Node();  // make a new goal node for comparison to initial for heuristic function
 	std::cout << "placeholder for A* search algo" << std::endl; 
 	//find h and f value of p and expand possible moves, swap each possible 
@@ -454,16 +452,15 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	//it's h' value to whatever it is, 
 	initial.setHValue(heuristic1(initial, goal));
 	//and it's f' value to h' + 0, or h'.
-	int f = initial.hValue + initial.gValue;
+	int f = initial.hValue + initial.depth;
 	initial.setFValue(f);
 	
-	std::cout<< "Initial.hValue: " << initial.hValue << std::endl;
-
+	std::cout<< "Initial.hValue after set: " << initial.hValue << std::endl;
 	
 	for (int i= 0; i < 4; i++) {
 		if (initial.possibleMoves[i] != -1) {
 			Node tempNode = Node(initial);
-			tempNode.swapPositions(tempNode)
+			tempNode.swapPositions(tempNode.possibleMoves[i]);
 		}
 	}
 	
