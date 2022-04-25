@@ -74,9 +74,10 @@ int main(int argc, char** argv) {
 	
 	
 	Node g = Node(1,2,3,8,0,4,7,6,5); //goal state
-	Node initial = Node();
 	int heuristicPicker =0;
 	int initialPicker=0;
+	Node initial2 = Node(2,1,6,4,0,8,7,5,3);
+	Node initial1 = Node(2,8,3,1,6,4,0,7,5);
 	std::vector<Node> open, closed, bestPath;
 
 	std::cout<< "Which initial puzzle would you like to solve? (1 or 2)" << std::endl;
@@ -86,10 +87,7 @@ int main(int argc, char** argv) {
 		std::cout<< "input not valid, exiting program";
 		return 0;
 	}
-	if (initialPicker==1)
-	Node initial = Node(2,8,3,1,6,4,0,7,5);
-	if (initialPicker==2)
-	Node initial = Node(2,1,6,4,0,8,7,5,3);
+	
 	std::cout<<std::endl;
 	std::cout<< "Which heuristic function would you like to solve the puzzle? (1,2,3,4,5, or 6)" << std::endl;
 	std::cin >>heuristicPicker;
@@ -101,7 +99,11 @@ int main(int argc, char** argv) {
 		std::cout<< "input not valid, exiting program";
 		return 0;
 	}
-	aStarSearch( initial, open, closed, bestPath, heuristicPicker);
+	if (initialPicker==1)
+	aStarSearch( initial1, open, closed, bestPath, heuristicPicker);
+	if (initialPicker==2)
+	Node initial2 = Node(2,1,6,4,0,8,7,5,3);
+	aStarSearch( initial2, open, closed, bestPath, heuristicPicker);
 
 	return 0;
 	
