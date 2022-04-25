@@ -499,6 +499,7 @@ int hueristic6 (Node &initial, Node &goal){
 //passing vector for initial node
 void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &closed, 
 	std::vector<Node> &bestPath, int heuristic) {
+	
 	// Set CLOSED to the
 	//empty list.
 	//1. Start with OPEN containing only the intitial node. 
@@ -506,6 +507,7 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	//set that node's g value to 0
 	//initial.setGvalue(0);
 	std::cout<< "Initial.hValue: " << initial.hValue << std::endl;
+	//loop until goal found
 	Node goal = Node();  // make a new goal node for comparison to initial for heuristic function
 	std::cout << "placeholder for A* search algo" << std::endl; 
 	//find h and f value of p and expand possible moves, swap each possible 
