@@ -14,7 +14,7 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 				std::vector<Node> &bestPath, int heuristic);
 
 int main(int argc, char** argv) {
-	
+/*	
 	
 	Node g = Node(1,2,3,8,0,4,7,6,5); //goal state
 	Node initialOne = Node(2,8,3,1,6,4,0,7,5);
@@ -69,9 +69,9 @@ int main(int argc, char** argv) {
 	std::cout << "heuristic 1 h value: " << heuristic1(p, g) << std::endl;
 	aStarSearch(initialOne, open, closed, bestPath, 1);
 	
-	
+	*/
 		//new main
-	/* 
+	
 	
 	Node g = Node(1,2,3,8,0,4,7,6,5); //goal state
 	Node initial = Node();
@@ -104,10 +104,10 @@ int main(int argc, char** argv) {
 	aStarSearch( initial, open, closed, bestPath, heuristicPicker);
 
 	return 0;
-	*/
 	
 	
-	return 0;
+	
+	
 }
 
 int heuristic1(Node &initial,  Node &goal) { //counts the tiles out of place in each state when it is compared with the goal.
