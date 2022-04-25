@@ -280,6 +280,7 @@ int heuristic3(Node &initial,  Node &goal) { // by checking around the non-centr
 int heuristic4(Node &initial,  Node &goal) { //corners out of place = +1, blank square out of place =+0, others out of place =+2
 
 	int hValue=0;
+
 	if (initial.square[0]!=1)
 		hValue=hValue+1;
 	if (initial.square[2]!=3)
@@ -288,7 +289,12 @@ int heuristic4(Node &initial,  Node &goal) { //corners out of place = +1, blank 
 		hValue=hValue+1;
 	if (initial.square[8]!=5)
 		hValue=hValue+1;
-
+	
+	if (initial.square[0]==0 ||initial.square[2]==0 ||initial.square[6]==0 ||initial.square[8]==0 )
+		hValue=hValue-1;
+	
+        if (initial.square[4]!=0)
+		hValue=hValue+1;
 	if (initial.square[1]!=2)
 		hValue=hValue+2;
 	if (initial.square[3]!=8)
@@ -297,8 +303,9 @@ int heuristic4(Node &initial,  Node &goal) { //corners out of place = +1, blank 
 		hValue=hValue+2;
 	if (initial.square[7]!=6)
 		hValue=hValue+2;
-
-
+	if (initial.square[4]==0 ||initial.square[1]==0 ||initial.square[3]==0 ||initial.square[5]==0 ||initial.square[7]==0 )
+		hValue=hValue-1;
+		
 	return hValue;
 }
 
