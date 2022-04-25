@@ -494,6 +494,7 @@ int hueristic6 (Node &initial, Node &goal){
 		hValue=hValue+1;
 	if (initial.square[8]!=5)
 		hValue=hValue+1;
+	return hValue;
 }
 
 //passing vector for initial node
