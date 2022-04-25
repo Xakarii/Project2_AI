@@ -25,9 +25,9 @@ Node::Node(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
 //copy constructor
 Node::Node(const Node &p) {
 	
-	std::cout << "Constructor for loop:";
+	std::cout << "Constructor for loop:" << std::endl;
 	for (int i=0; i<9; i++) {
-		std::cout << "square[i]: " << square[i] <<"p.square[i]" << p.square[i] <<std::endl;
+		std::cout << "square[i]: " << square[i] << ", p.square[i]" << p.square[i] <<std::endl;
 		this->square[i] = p.square[i];
 	}
 	this->depth = p.depth;

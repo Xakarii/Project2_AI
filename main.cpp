@@ -99,11 +99,13 @@ int main(int argc, char** argv) {
 		std::cout<< "input not valid, exiting program";
 		return 0;
 	}
-	if (initialPicker==1)
-	aStarSearch( initial1, open, closed, bestPath, heuristicPicker);
-	if (initialPicker==2)
-	Node initial2 = Node(2,1,6,4,0,8,7,5,3);
-	aStarSearch( initial2, open, closed, bestPath, heuristicPicker);
+	if (initialPicker==1) {
+		aStarSearch( initial1, open, closed, bestPath, heuristicPicker);
+	}
+	if (initialPicker==2) {
+		//Node initial2 = Node(2,1,6,4,0,8,7,5,3);
+		aStarSearch( initial2, open, closed, bestPath, heuristicPicker);
+	}	
 
 	return 0;
 	
