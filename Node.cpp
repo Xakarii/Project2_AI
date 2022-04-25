@@ -31,6 +31,8 @@ Node::Node(const Node &p) {
 		this->square[i] = p.square[i];
 	}
 	this->depth = p.depth;
+	this->hValue = p.hValue;
+	this-fValue = p.fValue;
 }
 //set a square[x] in puzzle obj to value n
 void Node::setNodeState(int x, int n) {

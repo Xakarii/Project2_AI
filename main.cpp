@@ -435,8 +435,6 @@ int hueristic6 (Node &initial, Node &goal){
 //passing vector for initial node
 void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &closed, 
 	std::vector<Node> &bestPath, int heuristic) {
-
-	
 	// Set CLOSED to the
 	//empty list.
 	//1. Start with OPEN containing only the intitial node. 
@@ -457,12 +455,14 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	
 	std::cout<< "Initial.hValue after set: " << initial.hValue << std::endl;
 	
+	/*
 	for (int i= 0; i < 4; i++) {
+		Node tempNode = Node(initial);
 		if (initial.possibleMoves[i] != -1) {
-			Node tempNode = Node(initial);
 			tempNode.swapPositions(tempNode.possibleMoves[i]);
+			Node newNode = Node(tempNode);
 		}
-	}
+	}*/
 	
 }
 
