@@ -360,7 +360,7 @@ for (int j =0; j<8 ; j++){
 		case 0:
 
 		if (initial.square[j]==1)
-			break:
+			break;
 
 		if (initial.square[1]==1 || initial.square[2]==1)
 			hValue=hValue+1;
@@ -374,7 +374,7 @@ for (int j =0; j<8 ; j++){
 
 		case 1: //square 2 check
 		if (initial.square[j]==2)
-			break:
+			break;
 		if (initial.square[0]==2 || initial.square[2]==2)
 			hValue=hValue+1;
 		else 
@@ -387,7 +387,7 @@ for (int j =0; j<8 ; j++){
 
 		case 2:
 		if (initial.square[j]==3)
-			break:
+			break;
 		if (initial.square[1]==3 || initial.square[0]==3)
 			hValue=hValue+1;
 		else 
@@ -400,7 +400,7 @@ for (int j =0; j<8 ; j++){
 
 		case 5:
 		if (initial.square[j]==4)
-			break:
+			break;
 		if (initial.square[3]==4 || initial.square[4]==4)
 			hValue=hValue+1;
 		else 
@@ -413,7 +413,7 @@ for (int j =0; j<8 ; j++){
 
 		case 8:
 		if (initial.square[j]==5)
-			break:
+			break;
 		if (initial.square[6]==5 || initial.square[7]==5)
 			hValue=hValue+1;
 		else 
@@ -426,7 +426,7 @@ for (int j =0; j<8 ; j++){
 
 		case 7:
 		if (initial.square[j]==6)
-			break:
+			break;
 		if (initial.square[8]==6 || initial.square[6]==6)
 			hValue=hValue+1;
 		else 
@@ -439,7 +439,7 @@ for (int j =0; j<8 ; j++){
 
 		case 6:
 		if (initial.square[j]==7)
-			break:
+			break;
 			if (initial.square[0]==7 || initial.square[3]==7)
 			hValue=hValue+1;
 		else 
@@ -452,7 +452,7 @@ for (int j =0; j<8 ; j++){
 
 		case 3:
 		if (initial.square[j]==8)
-			break:
+			break;
 		if (initial.square[0]==8 || initial.square[6]==8)
 			hValue=hValue+1;
 		else 
