@@ -311,10 +311,6 @@ for (int j =0; j<8 ; j++){
 		switch(j){
 			
 		case 0:
-		
-		if (initial.square[j]==1)
-			break:
-				
 		if (initial.square[1]==1 || initial.square[2]==1)
 			hValue=hValue+1;
 		else 
@@ -326,8 +322,6 @@ for (int j =0; j<8 ; j++){
 		break;
 
 		case 1: //square 2 check
-		if (initial.square[j]==2)
-			break:
 		if (initial.square[0]==2 || initial.square[2]==2)
 			hValue=hValue+1;
 		else 
@@ -339,8 +333,6 @@ for (int j =0; j<8 ; j++){
 		break;
 
 		case 2:
-		if (initial.square[j]==3)
-			break:
 		if (initial.square[1]==3 || initial.square[0]==3)
 			hValue=hValue+1;
 		else 
@@ -352,8 +344,6 @@ for (int j =0; j<8 ; j++){
 		break;
 
 		case 5:
-		if (initial.square[j]==4)
-			break:
 		if (initial.square[3]==4 || initial.square[4]==4)
 			hValue=hValue+1;
 		else 
@@ -365,8 +355,6 @@ for (int j =0; j<8 ; j++){
 		break;
 
 		case 8:
-		if (initial.square[j]==5)
-			break:
 		if (initial.square[6]==5 || initial.square[7]==5)
 			hValue=hValue+1;
 		else 
@@ -378,8 +366,6 @@ for (int j =0; j<8 ; j++){
 		break;
 
 		case 7:
-		if (initial.square[j]==6)
-			break:
 		if (initial.square[8]==6 || initial.square[6]==6)
 			hValue=hValue+1;
 		else 
@@ -391,8 +377,6 @@ for (int j =0; j<8 ; j++){
 		break;
 
 		case 6:
-		if (initial.square[j]==7)
-			break:
 			if (initial.square[0]==7 || initial.square[3]==7)
 			hValue=hValue+1;
 		else 
@@ -404,8 +388,6 @@ for (int j =0; j<8 ; j++){
 		break;
 
 		case 3:
-		if (initial.square[j]==8)
-			break:
 		if (initial.square[0]==8 || initial.square[6]==8)
 			hValue=hValue+1;
 		else 
@@ -464,7 +446,7 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	std::cout << "placeholder for A* search algo" << std::endl; 
 	//find h and f value of p and expand possible moves, swap each possible 
 	//with empty (0) square and create a new node for each
-	initial.findPossibleMoves();
+	int moves = initial.findPossibleMoves();
 	//it's h' value to whatever it is, 
 	initial.setHValue(heuristic1(initial, goal));
 	//and it's f' value to h' + 0, or h'.
@@ -472,14 +454,17 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	initial.setFValue(f);
 	
 	std::cout<< "Initial.hValue after set: " << initial.hValue << std::endl;
-	
 	/*
+	Node tempNode = Node(initial);
 	for (int i= 0; i < 4; i++) {
-		Node tempNode = Node(initial);
+		tempNode = initial;
 		if (initial.possibleMoves[i] != -1) {
 			tempNode.swapPositions(tempNode.possibleMoves[i]);
-			Node newNode = Node(tempNode);
+			initial.successors.push_back(tempNode);
 		}
+	}
+	for (int i= 0; i < moves; i++) {
+		initial.successors[i].printNode();
 	}*/
 	
 }
