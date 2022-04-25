@@ -304,7 +304,7 @@ int heuristic4(Node &initial,  Node &goal) { //corners out of place = +1, blank 
 	if (initial.square[7]!=6)
 		hValue=hValue+2;
 	if (initial.square[4]==0 ||initial.square[1]==0 ||initial.square[3]==0 ||initial.square[5]==0 ||initial.square[7]==0 )
-		hValue=hValue-1;
+		hValue=hValue-2;
 		
 	return hValue;
 }
