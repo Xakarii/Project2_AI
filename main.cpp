@@ -68,6 +68,46 @@ int main(int argc, char** argv) {
 	
 	std::cout << "heuristic 1 h value: " << heuristic1(p, g) << std::endl;
 	aStarSearch(initialOne, open, closed, bestPath, 1);
+	
+	
+		//new main
+	/* 
+	
+	Node g = Node(1,2,3,8,0,4,7,6,5); //goal state
+	Node p = Node();
+	int heuristicPicker =0;
+	int initialPicker=0;
+	std::vector<Node> open, closed, bestPath;
+
+	std::cout<< "Which initial puzzle would you like to solve? (1 or 2)" << std::endl;
+	std::cin >> initialPicker;
+	if ( initialPicker!=1 && initialPicker!=2){
+		std::cout<<std::endl;
+		std::cout<< "input not valid, exiting program";
+		return 0;
+	}
+	if (initialPicker==1)
+	Node initial = Node(2,8,3,1,6,4,0,7,5);
+	if (initialPicker==2)
+	Node initial = Node(2,1,6,4,0,8,7,5,3);
+	std::cout<<std::endl;
+	std::cout<< "Which heuristic function would you like to solve the puzzle? (1,2,3,4,5, or 6)" << std::endl;
+	std::cin >>heuristicPicker;
+	
+
+	if ( heuristicPicker!=1 && heuristicPicker!=2 && heuristicPicker!=3 && heuristicPicker!=4 
+		&& heuristicPicker!=5 && heuristicPicker!=6){
+		std::cout<<std::endl;
+		std::cout<< "input not valid, exiting program";
+		return 0;
+	}
+	aStarSearch(initial, vector<Node> &open, vector<Node> &closed, 
+				vector<Node> &bestPath, heuristic);
+
+	return 0;
+	*/
+	
+	
 	return 0;
 }
 
