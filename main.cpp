@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 	/* 
 	
 	Node g = Node(1,2,3,8,0,4,7,6,5); //goal state
-	Node p = Node();
+	Node initial = Node();
 	int heuristicPicker =0;
 	int initialPicker=0;
 	std::vector<Node> open, closed, bestPath;
@@ -101,8 +101,7 @@ int main(int argc, char** argv) {
 		std::cout<< "input not valid, exiting program";
 		return 0;
 	}
-	aStarSearch(initial, vector<Node> &open, vector<Node> &closed, 
-				vector<Node> &bestPath, heuristic);
+	aStarSearch( initial, open, closed, bestPath, heuristicPicker);
 
 	return 0;
 	*/
