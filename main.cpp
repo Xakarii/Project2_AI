@@ -1,9 +1,12 @@
 #include <iostream>
 #include <queue>
 #include <cmath>
+#include <ctime>
+#include <chrono>
 using namespace std;
 
-const int goal_state[9] = {1,2,3,8,0,4,5,6,7};
+
+const int goal_state[9] = {1,2,3,4,5,6,7,8,0};
 
 int hueristic1(int puzzle[9]);
 int hueristic2(int puzzle[9]);
@@ -31,7 +34,7 @@ public:
 
     void displayPuzzle()
     {
-        cout << "g(n) = " << depth << " " << "h(n) = " << hValue << endl;
+        cout << "depth = " << depth << " " << "h(n) = " << hValue << endl;
         cout << puzzle[0] << "  " << puzzle[1] << "  " << puzzle[2] << endl;
         cout << puzzle[3] << "  " << puzzle[4] << "  " << puzzle[5] << endl;
         cout << puzzle[6] << "  " << puzzle[7] << "  " << puzzle[8] << endl;
@@ -164,10 +167,10 @@ public:
             new_puzzle[i] = this->puzzle[i];
         }
 
-        int new_blank = new_x + (y * 3);
+        int new_index = new_x + (y * 3);
         int temp = new_puzzle[this->index];
-        new_puzzle[this->index] = new_puzzle[new_blank];
-        new_puzzle[new_blank] = temp;
+        new_puzzle[this->index] = new_puzzle[new_index];
+        new_puzzle[new_index] = temp;
 
         int new_hValue = 0;
         if (heuristic == 1)
@@ -195,10 +198,10 @@ public:
             new_hValue = hueristic6(new_puzzle);
         }
 
-        int new_gn = this->depth + 1;
-        int new_fn = new_gn + new_hValue;
+        int new_depth = this->depth + 1;
+        int new_fValue = new_depth + new_hValue;
 
-        statetoAdd = new Node(new_puzzle, new_blank, new_hValue, new_gn, new_fn, this);
+        statetoAdd = new Node(new_puzzle, new_index, new_hValue, new_depth, new_depth, this);
 
         //cout << "New state left: " << endl; 
         //statetoAdd->displayPuzzle();
@@ -274,7 +277,7 @@ public:
 class compareState //compare function for priority queue
 {
 public:
-    int operator() (Node* state1, Node* state2)
+    bool operator() (Node* state1, Node* state2)
     {
         return state1->fValue > state2->fValue;
     }
@@ -293,7 +296,6 @@ int hueristic1(int puzzle[9])
         }
 
     }
-    //cout << "num misplaced tile test " << hValue << endl;
     return hValue;
     
 }
@@ -682,61 +684,61 @@ void aStarSearch(Node* initialstate, int hchoice)
     int node_gen = 0;
     int heuristic = hchoice;
 
-    priority_queue <Node*, vector<Node*>, compareState > pq;
+    priority_queue <Node*, vector<Node*>, compareState > bestNode;
 
-    Node* currNode;
+    Node* SUCC;
 
-    pq.push(initialstate);
+    bestNode.push(initialstate);
 
-    while (pq.size() != 0)
+    while (bestNode.size() != 0)
     {
-        if (pq.size() > node_gen) //updates generated nodes
+        if (bestNode.size() > node_gen) //updates generated nodes
         {
-            node_gen = pq.size();
+            node_gen = bestNode.size();
         }
 
-        currNode = pq.top();
-        pq.pop();
+        SUCC = bestNode.top();
+        bestNode.pop();
      
 
         for (int i = 0; i < 9; i++) //check for goal state
         {
-            if (currNode->puzzle[i] != goal_state[i])
+            if (SUCC->puzzle[i] != goal_state[i])
             {
                 
                 break;
             }
-            else if ((currNode->puzzle[i] == goal_state[i]) && (i == 8))
+            else if ((SUCC->puzzle[i] == goal_state[i]) && (i == 8))
             {
                 cout << "Generated Nodes: " << node_gen << endl;
                 cout << "Nodes Expanded: " << nodes_expanded << endl;
                 cout << "Puzzle Solved!" << endl;
-                currNode->displayPuzzle();
+                SUCC->displayPuzzle();
                 return;
             }
         }
 
         cout << "Expanding state " << endl;
-        currNode->displayPuzzle();
+        SUCC->displayPuzzle();
         nodes_expanded += 1; //expanding state, update count
 
         // check where blank is and determine what operators are possible
         // add those states to priority queue
-        if (currNode->index != 0 && currNode->index != 1 && currNode->index != 2)
+        if (SUCC->index != 0 && SUCC->index != 1 && SUCC->index != 2)
         {
-            pq.push(currNode->moveUp(heuristic));
+            bestNode.push(SUCC->moveUp(heuristic));
         }
-        if (currNode->index != 6 && currNode->index != 7 && currNode->index != 8)
+        if (SUCC->index != 6 && SUCC->index != 7 && SUCC->index != 8)
         {
-            pq.push(currNode->moveDown(heuristic));
+            bestNode.push(SUCC->moveDown(heuristic));
         }
-        if (currNode->index != 0 && currNode->index != 3 && currNode->index != 6)
+        if (SUCC->index != 0 && SUCC->index != 3 && SUCC->index != 6)
         {
-            pq.push(currNode->moveLeft(heuristic));
+            bestNode.push(SUCC->moveLeft(heuristic));
         }
-        if (currNode->index != 2 && currNode->index != 5 && currNode->index != 8)
+        if (SUCC->index != 2 && SUCC->index != 5 && SUCC->index != 8)
         {
-            pq.push(currNode->moveRight(heuristic));
+            bestNode.push(SUCC->moveRight(heuristic));
         }
 
     }
@@ -746,9 +748,9 @@ void aStarSearch(Node* initialstate, int hchoice)
 
 int main()
 {
-    //int userPuzzle[9];
-    //int goal_state[9] = { 1,2,3,8,0,4,5,6,7 };
-    int initialstate[9] = {1,2,3,4,8,0,7,6,5}; //TESTIN
+   
+
+    int initialstate[9] = {1,2,3,4,8,0,7,6,5}; 
     int hueristicpicker;
     int index;
 
@@ -764,7 +766,7 @@ int main()
 
 
 
-    cout << "Enter algorithm choice: " << endl;
+    cout << "Enter hueristic choice: " << endl;
     cout << "   Enter \"1\" Hueristic 1" << endl;
     cout << "   Enter \"2\" Heuristic 2" << endl;
     cout << "   Enter \"3\" Heuristic 3" << endl;
@@ -797,9 +799,9 @@ int main()
         problem->hValue = hueristic6(problem->puzzle);
     }
 
-
+  
     aStarSearch(problem, hueristicpicker);
-
+    
 
     return 0;
 }
