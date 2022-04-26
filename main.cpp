@@ -502,7 +502,12 @@ int heuristic6(Node &initial,  Node &goal){
 
 //passing vector for initial node
 void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &closed, 
+	
 	std::vector<Node> &bestPath, int heuristic) {
+	bool solved = false;
+	int bestSuccessor = 9999;
+	std::cout<< "initial node state: " << std::endl;
+	initial.printNode();
 	
 	// Set CLOSED to the
 	//empty list.
@@ -512,30 +517,46 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	//initial.setGvalue(0);
 	std::cout<< "Initial.hValue: " << initial.hValue << std::endl;
 	//loop until goal found
-	Node goal = Node();  // make a new goal node for comparison to initial for heuristic function
+	Node g = Node();  // make a new goal node for comparison to initial for heuristic function
 	std::cout << "placeholder for A* search algo" << std::endl; 
 	//find h and f value of p and expand possible moves, swap each possible 
 	//with empty (0) square and create a new node for each
 	int moves = initial.findPossibleMoves();
 	//it's h' value to whatever it is, 
-	initial.setHValue(heuristic1(initial, goal));
+	initial.setHValue(heuristic1(initial, g));
 	//and it's f' value to h' + 0, or h'.
 	int f = initial.hValue + initial.depth;
 	initial.setFValue(f);
 	
 	std::cout<< "Initial.hValue after set: " << initial.hValue << std::endl;
-	/*
 	Node tempNode = Node(initial);
+	
 	for (int i= 0; i < 4; i++) {
 		tempNode = initial;
 		if (initial.possibleMoves[i] != -1) {
 			tempNode.swapPositions(tempNode.possibleMoves[i]);
+			tempNode.findPossibleMoves();
 			initial.successors.push_back(tempNode);
 		}
 	}
+	std::cout<<"Expanded nodes on successors list: " << std::endl;
 	for (int i= 0; i < moves; i++) {
 		initial.successors[i].printNode();
-	}*/
+		std::cout<<"possible moves count:" << initial.successors[i].findPossibleMoves() << std::endl;
+		std::cout<<"hValue: " << heuristic1(initial.successors[i], g) << std::endl;
+	}
+	
+	std::cout <<"initial.successors.size(): " << initial.successors.size() << std::endl;
+	int temph = 0;
+	for (int i = 0; i < initial.successors.size(); i++) {
+		std::cout << "for loop finding best successor Initial.successor[i]: " << std::endl;
+		initial.successors[i].printNode();
+		temph = heuristic1(initial.successors[i] , g);
+		if ( temph < bestSuccessor) {
+			bestSuccessor = i;
+		}
+	}
+	std::cout << "BestSuccessor is in index " << bestSuccessor << " of successor list." << std::endl;
 	
 }
 

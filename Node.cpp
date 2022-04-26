@@ -25,14 +25,14 @@ Node::Node(int a, int b, int c, int d, int e, int f, int g, int h, int i) {
 //copy constructor
 Node::Node(const Node &p) {
 	
-	std::cout << "Constructor for loop:" << std::endl;
+	//std::cout << "Constructor for loop:" << std::endl;
 	for (int i=0; i<9; i++) {
-		std::cout << "square[i]: " << square[i] << ", p.square[i]" << p.square[i] <<std::endl;
+		//std::cout << "square[i]: " << square[i] << ", p.square[i]" << p.square[i] <<std::endl;
 		this->square[i] = p.square[i];
-	}
+	}  //commented out to cut spam
 	this->depth = p.depth;
-	this->hValue = p.hValue;
-	this->fValue = p.fValue;
+	//this->hValue = p.hValue;
+	//this->fValue = p.fValue;
 }
 //set a square[x] in puzzle obj to value n
 void Node::setNodeState(int x, int n) {
@@ -51,6 +51,19 @@ void Node::setHValue(int h) {
 
 void Node::setFValue(int f) {
 	fValue = f;
+}
+
+void Node::setParent(std::shared_ptr<Node> &parentNode) {
+	this->parent = parentNode;
+}
+std::shared_ptr<Node> Node::getParent() {
+	return parent;
+}
+void Node::setBestSuccessor(std::shared_ptr<Node> &bestSuccessorNode) {
+	this->bestSuccessor = bestSuccessorNode;
+}
+std::shared_ptr<Node> Node::getBestSuccessor() {
+	return bestSuccessor;
 }
 
 //assuming we only swap with the empty (0) position, then whatever square is adjacent to
@@ -133,24 +146,20 @@ int Node::findPossibleMoves() {
 			possibleMoves[3] = 7;
 			break;
 		case 5 :
-			std::cout<<"case 5" << std::endl;
 			possibleMoves[0] = 2;
 			possibleMoves[1] = 4;
 			possibleMoves[2] = 8;
 			break;
 		case 6 :
-			std::cout<<"case 6" << std::endl;
 			possibleMoves[0] = 3;
 			possibleMoves[1] = 7;
 			break;
 		case 7 :
-			std::cout<<"case 7" << std::endl;
 			possibleMoves[0] = 6;
 			possibleMoves[1] = 4;
 			possibleMoves[2] = 8;
 			break;
 		case 8 :
-			std::cout<<"case 8" << std::endl;
 			possibleMoves[0] = 7;
 			possibleMoves[1] = 5;
 			break;
@@ -160,6 +169,5 @@ int Node::findPossibleMoves() {
 			if (possibleMoves[i] != -1)
 				possibleMovesCount++;
 		}
-		std::cout << std::endl;
 	return possibleMovesCount;
 }
