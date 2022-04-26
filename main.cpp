@@ -77,7 +77,8 @@ int main(int argc, char** argv) {
 	int heuristicPicker =0;
 	int initialPicker=0;
 	Node initial2 = Node(2,1,6,4,0,8,7,5,3);
-	Node initial1 = Node(2,8,3,1,6,4,0,7,5);
+	//Node initial1 = Node(2,8,3,1,6,4,0,7,5);
+	Node initial1 = Node(2,8,3,1,6,4,7,0,5);
 	std::vector<Node> open, closed, bestPath;
 
 	std::cout<< "Which initial puzzle would you like to solve? (1 or 2)" << std::endl;
@@ -517,7 +518,7 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 	//initial.setGvalue(0);
 	std::cout<< "Initial.hValue: " << initial.hValue << std::endl;
 	//loop until goal found
-	Node g = Node();  // make a new goal node for comparison to initial for heuristic function
+	Node g = Node(1,2,3,8,0,4,7,6,5);  // make a new goal node for comparison to initial for heuristic function
 	std::cout << "placeholder for A* search algo" << std::endl; 
 	//find h and f value of p and expand possible moves, swap each possible 
 	//with empty (0) square and create a new node for each
@@ -544,19 +545,24 @@ void aStarSearch(Node &initial, std::vector<Node> &open, std::vector<Node> &clos
 		initial.successors[i].printNode();
 		std::cout<<"possible moves count:" << initial.successors[i].findPossibleMoves() << std::endl;
 		std::cout<<"hValue: " << heuristic1(initial.successors[i], g) << std::endl;
+		initial.successors[i].setHValue(heuristic1(initial.successors[i], g));
 	}
 	
 	std::cout <<"initial.successors.size(): " << initial.successors.size() << std::endl;
 	int temph = 0;
+	int bestSuccessorIndex = 0;
 	for (int i = 0; i < initial.successors.size(); i++) {
 		std::cout << "for loop finding best successor Initial.successor[i]: " << std::endl;
 		initial.successors[i].printNode();
 		temph = heuristic1(initial.successors[i] , g);
-		if ( temph < bestSuccessor) {
-			bestSuccessor = i;
+		std::cout<< "temph= " << temph << std::endl;
+		if ( initial.successors[i].hValue < bestSuccessor) {
+			std::cout << "bestSuccessor at i= " << i << std::endl;
+			bestSuccessor = initial.successors[i].hValue;
+			bestSuccessorIndex = i;
 		}
 	}
-	std::cout << "BestSuccessor is in index " << bestSuccessor << " of successor list." << std::endl;
+	std::cout << "BestSuccessor is in index " << bestSuccessorIndex << " of successor list." << std::endl;
 	
 }
 
