@@ -32,12 +32,50 @@ public:
     }
 
 
-    void displayPuzzle()
+     void displayPuzzle()
     {
         cout << "depth = " << depth << " " << "h(n) = " << hValue << endl;
-        cout << puzzle[0] << "  " << puzzle[1] << "  " << puzzle[2] << endl;
-        cout << puzzle[3] << "  " << puzzle[4] << "  " << puzzle[5] << endl;
-        cout << puzzle[6] << "  " << puzzle[7] << "  " << puzzle[8] << endl;
+      // cout << puzzle[0] << "  " << puzzle[1] << "  " << puzzle[2] << endl; 
+      //  cout << puzzle[3] << "  " << puzzle[4] << "  " << puzzle[5] << endl;
+      //  cout << puzzle[6] << "  " << puzzle[7] << "  " << puzzle[8] << endl;
+         for(int i =0; i< 9;i++){
+            if (puzzle[i]==0)
+                cout << 5;
+                    
+            else if (puzzle[i]==1)
+                cout << 1 ;
+                
+            else if (puzzle[i]==2)
+                cout << 2 ;
+                
+            else if (puzzle[i]==3)
+                cout << 3 ;
+            else if (puzzle[i]==4)
+                cout << 8 ;
+            else if (puzzle[i]==5)
+                cout << 0 ;
+            else if (puzzle[i]==6)
+                cout << 4 ;
+            else if (puzzle[i]==7)
+                cout << 7 ;
+            else if (puzzle[i]==8)
+                cout << 6 ;
+            
+
+            if(i == 2 || i==5 || i==8) 
+             cout <<    endl; 
+
+            else
+            cout << " ";        
+
+
+
+
+
+
+         }  
+        
+        
     }
 
     Node* moveUp(int heuristic) //return new state to add to queue
