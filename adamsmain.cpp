@@ -748,11 +748,13 @@ void aStarSearch(Node* initialstate, int hchoice)
                 break;
             }
             else if ((SUCC->puzzle[i] == goal_state[i]) && (i == 8))
-            {
+            {   SUCC->displayPuzzle();
                 cout << "Generated Nodes: " << node_gen << endl;
                 cout << "Nodes Expanded: " << nodes_expanded << endl;
-                cout << "Puzzle Solved!" << endl;
-                SUCC->displayPuzzle();
+                cout << "Depth " << SUCC->depth<< endl;
+                cout << "effective branching factor b* " << nodes_expanded/SUCC->depth << endl;
+                
+        
                 return;
             }
         }
@@ -803,7 +805,12 @@ int main()
         }
     }
 
+    
+	int initialPicker=0;
+	
 
+	std::cout<< "Which initial puzzle would you like to solve? (1 or 2)" << endl;
+	std::cin >> initialPicker;
 
     cout << "Enter hueristic choice: " << endl;
     cout << "   Enter \"1\" Hueristic 1" << endl;
@@ -815,36 +822,84 @@ int main()
 
     cin >> hueristicpicker;
 
-    Node* problem = new Node(initialstate, index, 0, 0, 0, 0);
+    int initialstate1[9] = {1,2,3,4,8,0,7,6,5}; 
+    int initialstate2[9] = {1,2,3,4,8,0,7,6,5}; 
+    
+
+    Node* problem1 = new Node(initialstate1, index, 0, 0, 0, 0);
+    Node* problem2 = new Node(initialstate2, index, 0, 0, 0, 0);
+
+    if (initialPicker==1){
 
     if (hueristicpicker == 2)
     {
-        problem->hValue = hueristic2(problem->puzzle);
+        problem1->hValue = hueristic2(problem1->puzzle);
     }
     if (hueristicpicker == 3)
     {
-        problem->hValue = hueristic3(problem->puzzle);
+        problem1->hValue = hueristic3(problem1->puzzle);
     }
     if (hueristicpicker == 4)
     {
-        problem->hValue = hueristic4(problem->puzzle);
+        problem1->hValue = hueristic4(problem1->puzzle);
     }
     if (hueristicpicker == 5)
     {
-        problem->hValue = hueristic5(problem->puzzle);
+        problem1->hValue = hueristic5(problem1->puzzle);
     }
     if (hueristicpicker == 6)
     {
-        problem->hValue = hueristic6(problem->puzzle);
+        problem1->hValue = hueristic6(problem1->puzzle);
     }
     
+    
     auto start = high_resolution_clock::now();
-    aStarSearch(problem, hueristicpicker);
+    aStarSearch(problem1, hueristicpicker);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
  
 // To get the value of duration use the count()
 // member function on the duration object
      cout << duration.count() << " microseconds" << endl;
+    }
+    else{
+
+
+    if (hueristicpicker == 2)
+    {
+        problem2->hValue = hueristic2(problem2->puzzle);
+    }
+    if (hueristicpicker == 3)
+    {
+        problem2->hValue = hueristic3(problem2->puzzle);
+    }
+    if (hueristicpicker == 4)
+    {
+        problem2->hValue = hueristic4(problem2->puzzle);
+    }
+    if (hueristicpicker == 5)
+    {
+        problem1->hValue = hueristic5(problem2->puzzle);
+    }
+    if (hueristicpicker == 6)
+    {
+        problem2->hValue = hueristic6(problem2->puzzle);
+    }
+    
+    
+    auto start = high_resolution_clock::now();
+    aStarSearch(problem2, hueristicpicker);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+ 
+// To get the value of duration use the count()
+// member function on the duration object
+     cout << duration.count() << " microseconds" << endl;
+
+
+
+
+
+    }
     return 0;
 }
